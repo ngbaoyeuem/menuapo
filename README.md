@@ -1,6 +1,6 @@
 # ⚡ APO CRUSHER VIP v38.0 (Universal All-App)
 > **Tác giả:** Nguyen Hoang Gia Bao
-> **Phát triển:** Bộ lọc âm thanh, khuếch đại Micro siêu to và lọc 100% tạp âm cho tất cả ứng dụng có Micro trên iPhone/iPad (Discord, Messenger, Telegram, Zalo, Call, PUBG, FreeFire, TikTok, Web Voice).
+> **Phát triển:** Bộ lọc âm thanh, khuếch đại Micro siêu to và lọc 100% tạp âm cho tất cả ứng dụng có Micro trên iPhone/iPad (Discord, Messenger, Telegram, Zalo, Cuộc gọi, PUBG, FreeFire, TikTok, Web Voice).
 
 ---
 
@@ -14,3 +14,4 @@
 3. **`ApoCrusher.dylib` & `auto_patch_ipa.py`**: Tool tiêm trực tiếp vào file IPA gốc của Discord, Messenger, Zalo.
 4. **`Ngbao_Universal_Extension_v38.zip`**: Extension mở rộng cho Chrome / Kiwi / Orion / Brave hỗ trợ mọi trang web.
 5. **`apo_crusher.user.js`**: Userscript cho Safari iOS và Orion Browser.
+6. **`APO_CRUSHER_v38_FULL_RELEASE.zip`**: Gói nén trọn bộ tất cả công cụ.
