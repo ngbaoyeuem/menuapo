@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "BIN w DUC APO CRUSHER (Universal Mic Booster)",
+  "version": "38.0",
+  "description": "APO Audio & Mic Enhancer by Nguyen Hoang Gia Bao - Universal Support for All Apps & Websites",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "*://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>",
+        "*://*/*"
+      ],
+      "js": [
+        "injector.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "hellfire.js"
+      ],
+      "matches": [
+        "<all_urls>",
+        "*://*/*"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "APO Crusher Mic Booster v38"
+  }
+}
