@@ -1,0 +1,404 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="APO Crusher">
+  <title>APO Crusher v38.0 by Nguyen Hoang Gia Bao</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon" href="AppIcon60x60@3x.png">
+</head>
+<body>
+  <div id="app-container">
+    <!-- iOS Header -->
+    <header id="app-header">
+      <div class="header-main">
+        <div class="app-brand">
+          <div class="brand-icon">⚡</div>
+          <div class="brand-text">
+            <div class="brand-title">APO CRUSHER <span class="badge-pro">v38.0 VIP</span></div>
+            <div class="brand-author">by Nguyen Hoang Gia Bao · Universal All-App</div>
+          </div>
+        </div>
+        <div class="engine-status" id="header-status-badge">
+          <span class="status-dot" id="status-dot"></span>
+          <span class="status-text" id="status-text">SẴN SÀNG</span>
+        </div>
+      </div>
+      
+      <!-- Segmented Navigation Bar -->
+      <nav id="app-tabs">
+        <button class="tab-btn active" data-target="tab-live">🎙️ Mic Live</button>
+        <button class="tab-btn" data-target="tab-webapps">🌐 Web Apps</button>
+        <button class="tab-btn" data-target="tab-dsp">🎛️ DSP & Presets</button>
+        <button class="tab-btn" data-target="tab-cfg">📂 CFG / EQ</button>
+        <button class="tab-btn" data-target="tab-settings">⚙️ Cài đặt</button>
+      </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="app-body">
+      
+      <!-- TAB 1: LIVE MIC PASSTHROUGH & LOOPER -->
+      <section id="tab-live" class="tab-pane active">
+        <div class="hero-card">
+          <div class="hero-glow"></div>
+          <div class="hero-content">
+            <div class="hero-icon">🎙️</div>
+            <h2 class="hero-title">Bộ Khuếch Đại & Lọc Mic Trực Tiếp</h2>
+            <p class="hero-desc">Thu âm trực tiếp từ Microphone iPhone/iPad, chạy qua bộ xử lý DSP cực đại (KhangEngine + APO VIP) và phát ra Tai nghe / Loa ngoài / Bluetooth / Cáp AUX với độ trễ siêu thấp.</p>
+            
+            <button id="btn-toggle-mic" class="btn-hero-action">
+              <span class="hero-btn-icon">▶</span>
+              <span id="btn-toggle-mic-text">BẬT MIC LIVE NGAY</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- VU Meter & Visualizer -->
+        <div class="panel-card">
+          <div class="card-header">
+            <span>📊 MỨC ÂM LƯỢNG & TẦN SỐ THỜI GIAN THỰC</span>
+            <span id="vu-peak-badge" class="badge-tag">0 dB</span>
+          </div>
+          <div class="visualizer-wrapper">
+            <canvas id="spectrum-canvas" width="600" height="140"></canvas>
+          </div>
+          
+          <div class="vu-meter-container">
+            <div class="vu-row">
+              <span class="vu-label">IN L</span>
+              <div class="vu-bar-track"><div id="vu-in-l" class="vu-bar-fill"></div></div>
+            </div>
+            <div class="vu-row">
+              <span class="vu-label">IN R</span>
+              <div class="vu-bar-track"><div id="vu-in-r" class="vu-bar-fill"></div></div>
+            </div>
+            <div class="vu-row">
+              <span class="vu-label">OUT</span>
+              <div class="vu-bar-track"><div id="vu-out" class="vu-bar-fill vu-bar-out"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Boost Tiers -->
+        <div class="panel-card">
+          <div class="card-header">
+            <span>👑 CHẾ ĐỘ APO K TẠP ÂM VIP (Volume Siêu To)</span>
+          </div>
+          <div class="quick-grid">
+            <button class="quick-btn" data-tier="🌟 NHẸ - TRONG TRẺO">🌟 Nhẹ (Trong Trẻo)</button>
+            <button class="quick-btn" data-tier="⚡ VỪA - DÀY GIỌNG RÕ">⚡ Vừa (Dày Giọng Rõ)</button>
+            <button class="quick-btn" data-tier="💎 XỊN MAX - TO KHỦNG">💎 Xịn Max (To Khủng)</button>
+            <button class="quick-btn quick-btn-vip" data-tier="👑 APO VIP PRO - MAX VOLUME">👑 APO VIP PRO (MAX)</button>
+          </div>
+        </div>
+
+        <!-- Quick Extreme Presets -->
+        <div class="panel-card">
+          <div class="card-header">
+            <span>💥 PRESET SIÊU CƯỜNG ĐỘ (Crush & Nuke)</span>
+          </div>
+          <div class="preset-chip-grid">
+            <button class="preset-chip" data-preset="CLEAN">CLEAN</button>
+            <button class="preset-chip" data-preset="WARM">WARM</button>
+            <button class="preset-chip" data-preset="LOUD">LOUD</button>
+            <button class="preset-chip" data-preset="SIÊU ỒN">SIÊU ỒN</button>
+            <button class="preset-chip chip-apovang" data-preset="⚡ APO VANG">⚡ APO VANG</button>
+            <button class="preset-chip chip-nuke" data-preset="NUKE">NUKE</button>
+            <button class="preset-chip chip-vangnuke" data-preset="⚡ VANG NUKE">⚡ VANG NUKE</button>
+            <button class="preset-chip chip-mega" data-preset="☢ MEGATON">☢ MEGATON</button>
+            <button class="preset-chip chip-unuke" data-preset="☢️ ULTIMATE NUKE">☢️ ULTIMATE NUKE</button>
+            <button class="preset-chip chip-unuke-echo" data-preset="💀 ULTIMATE NUKE ECHO">💀 ULTIMATE NUKE ECHO</button>
+          </div>
+        </div>
+
+        <!-- Audio Output Settings -->
+        <div class="panel-card">
+          <div class="card-header">
+            <span>🎧 ĐỊNH TUYẾN ÂM THANH ĐẦU RA</span>
+          </div>
+          <div class="control-row">
+            <span>Âm lượng Monitor (Nghe lại)</span>
+            <span id="label-monitor-gain" class="val-badge">100%</span>
+          </div>
+          <input type="range" id="slider-monitor-gain" min="0" max="2.0" step="0.05" value="1.0">
+
+          <div class="control-row" style="margin-top:12px;">
+            <span>Tắt tiếng Monitor (Chỉ xuất Stream/Cáp)</span>
+            <label class="ios-switch">
+              <input type="checkbox" id="toggle-monitor-mute">
+              <span class="ios-slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 2: WEB VOICE HUB (ALL APPS) -->
+      <section id="tab-webapps" class="tab-pane">
+        <div class="panel-card">
+          <div class="card-header">
+            <span>🌐 TRÌNH DUYỆT VOICE TÍCH HỢP TỰ ĐỘNG KHUẾCH ĐẠI MIC</span>
+          </div>
+          <p class="card-sub">Mở bất kỳ ứng dụng voice nào bên dưới hoặc nhập URL bất kỳ. Bộ lọc <strong>APO Crusher</strong> sẽ tự động tiêm vào Web Audio & getUserMedia để mic luôn to và lọc tạp âm 100%!</p>
+
+          <div class="app-launcher-grid">
+            <div class="app-card" data-url="https://discord.com/app">
+              <div class="app-icon">🎮</div>
+              <div class="app-name">Discord Web</div>
+              <div class="app-desc">Voice Chat & Kênh thoại</div>
+            </div>
+            <div class="app-card" data-url="https://meet.google.com">
+              <div class="app-icon">📹</div>
+              <div class="app-name">Google Meet</div>
+              <div class="app-desc">Họp & Gọi thoại HD</div>
+            </div>
+            <div class="app-card" data-url="https://www.messenger.com">
+              <div class="app-icon">💬</div>
+              <div class="app-name">Messenger</div>
+              <div class="app-desc">Gọi thoại Facebook</div>
+            </div>
+            <div class="app-card" data-url="https://web.telegram.org/k/">
+              <div class="app-icon">✈️</div>
+              <div class="app-name">Telegram Web</div>
+              <div class="app-desc">Kênh thoại & Nhóm</div>
+            </div>
+            <div class="app-card" data-url="https://app.zoom.us/wc">
+              <div class="app-icon">👥</div>
+              <div class="app-name">Zoom Web</div>
+              <div class="app-desc">Hội nghị trực tuyến</div>
+            </div>
+            <div class="app-card" data-url="https://chat.zalo.me">
+              <div class="app-icon">📱</div>
+              <div class="app-name">Zalo Web</div>
+              <div class="app-desc">Nhắn tin & Gọi mic</div>
+            </div>
+            <div class="app-card" data-url="https://ome.tv">
+              <div class="app-icon">🎥</div>
+              <div class="app-name">OmeTV / Omegle</div>
+              <div class="app-desc">Video Chat ngẫu nhiên</div>
+            </div>
+            <div class="app-card" data-url="https://www.twitch.tv">
+              <div class="app-icon">💜</div>
+              <div class="app-name">Twitch Stream</div>
+              <div class="app-desc">Phát sóng & Livestream</div>
+            </div>
+          </div>
+
+          <div class="url-input-box">
+            <input type="url" id="custom-web-url" placeholder="https://nhap-trang-web-co-mic-bat-ky.com">
+            <button id="btn-launch-custom-url" class="btn-primary">MỞ TRANG</button>
+          </div>
+        </div>
+
+        <div id="inapp-browser-card" class="panel-card" style="display:none;">
+          <div class="card-header">
+            <span id="browser-title">ĐANG CHẠY TRANG WEB VOICE</span>
+            <button id="btn-close-browser" class="btn-small-danger">✕ ĐÓNG KHUNG</button>
+          </div>
+          <div class="browser-frame-wrapper">
+            <iframe id="inapp-frame" allow="microphone; camera; display-capture; autoplay"></iframe>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 3: DSP CONTROLLER -->
+      <section id="tab-dsp" class="tab-pane">
+        <div class="panel-card">
+          <div class="card-header">
+            <span>🎛 BỘ THAM SỐ KHUẾCH ĐẠI GỐC (KhangEngine)</span>
+            <button id="btn-reset-dsp" class="btn-small-outline">↺ Đặt Lại</button>
+          </div>
+
+          <div class="slider-group">
+            <div class="control-row">
+              <span>🔊 PRE GAIN (Khuếch đại trước)</span>
+              <span id="val-pre-gain" class="val-badge">4x</span>
+            </div>
+            <input type="range" id="sl-pre-gain" min="1" max="99999" step="1" value="4">
+
+            <div class="control-row">
+              <span>🔥 DRIVE (Bão hòa méo tiếng)</span>
+              <span id="val-drive" class="val-badge">0%</span>
+            </div>
+            <input type="range" id="sl-drive" min="0" max="1" step="0.01" value="0">
+
+            <div class="control-row">
+              <span>💥 CRUSH (Cắt vỡ sóng âm)</span>
+              <span id="val-crush" class="val-badge">0%</span>
+            </div>
+            <input type="range" id="sl-crush" min="0" max="1" step="0.01" value="0">
+
+            <div class="control-row">
+              <span>🌐 WIDTH (Độ rộng Stereo)</span>
+              <span id="val-width" class="val-badge">0%</span>
+            </div>
+            <input type="range" id="sl-width" min="0" max="2" step="0.02" value="0">
+
+            <div class="control-row">
+              <span>⚡ POST GAIN (Khuếch đại sau)</span>
+              <span id="val-post-gain" class="val-badge">1x</span>
+            </div>
+            <input type="range" id="sl-post-gain" min="0.1" max="99999" step="1" value="1">
+
+            <div class="control-row">
+              <span>🎚️ HZ CAO (Độ chói / rõ giọng)</span>
+              <span id="val-hz-boost" class="val-badge">+0dB</span>
+            </div>
+            <input type="range" id="sl-hz-boost" min="0" max="12" step="0.5" value="0">
+          </div>
+        </div>
+
+        <!-- Voice Changer & Effects -->
+        <div class="panel-card">
+          <div class="card-header">
+            <span>🎙️ ĐỔI GIỌNG (PITCH SHIFTER)</span>
+            <label class="ios-switch">
+              <input type="checkbox" id="toggle-voice-pitch">
+              <span class="ios-slider"></span>
+            </label>
+          </div>
+          <div id="voice-pitch-body" class="sub-panel disabled">
+            <div class="quick-grid">
+              <button class="quick-btn" data-pitch="12">👶 Em Bé (+12st)</button>
+              <button class="quick-btn" data-pitch="-6">🎅 Ông Già (-6st)</button>
+              <button class="quick-btn" data-pitch="12">👽 Robot</button>
+              <button class="quick-btn" data-pitch="-10">🐸 Ếch (-10st)</button>
+            </div>
+            <div class="control-row" style="margin-top:8px;">
+              <span>Độ Cao Tone (Pitch Semitones)</span>
+              <span id="val-pitch-semitones" class="val-badge">0 st</span>
+            </div>
+            <input type="range" id="sl-pitch-semitones" min="-12" max="12" step="1" value="0">
+          </div>
+        </div>
+
+        <!-- Echo & Distortion -->
+        <div class="panel-card">
+          <div class="card-header">
+            <span>🌀 VANG VỌNG, GẦM RÚ & NHIỄU ÂM (ECHO/RUMBLE)</span>
+            <label class="ios-switch">
+              <input type="checkbox" id="toggle-echo">
+              <span class="ios-slider"></span>
+            </label>
+          </div>
+          <div id="echo-body" class="sub-panel disabled">
+            <div class="control-row">
+              <span>⏱ Delay Vang</span>
+              <span id="val-echo-delay" class="val-badge">0.18s</span>
+            </div>
+            <input type="range" id="sl-echo-delay" min="0.01" max="2.0" step="0.01" value="0.18">
+
+            <div class="control-row">
+              <span>🔁 Feedback (Độ sâu)</span>
+              <span id="val-echo-fb" class="val-badge">55%</span>
+            </div>
+            <input type="range" id="sl-echo-fb" min="0" max="0.999" step="0.001" value="0.55">
+
+            <div class="control-row">
+              <span>🌊 Mix (Tỷ lệ vang)</span>
+              <span id="val-echo-mix" class="val-badge">50%</span>
+            </div>
+            <input type="range" id="sl-echo-mix" min="0" max="1.0" step="0.01" value="0.5">
+
+            <div class="control-row">
+              <span>🌋 Rumble (Gầm rú)</span>
+              <span id="val-echo-rumble" class="val-badge">0%</span>
+            </div>
+            <input type="range" id="sl-echo-rumble" min="0" max="1.0" step="0.01" value="0">
+
+            <div class="control-row">
+              <span>🔩 Grind (Rè vỡ)</span>
+              <span id="val-echo-grind" class="val-badge">0%</span>
+            </div>
+            <input type="range" id="sl-echo-grind" min="0" max="1.0" step="0.01" value="0">
+
+            <div class="control-row">
+              <span>🎛 Tiếng Nhiễu (Noise)</span>
+              <span id="val-echo-noise" class="val-badge">0%</span>
+            </div>
+            <input type="range" id="sl-echo-noise" min="0" max="1.0" step="0.01" value="0">
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 4: CFG & EQUALIZER APO -->
+      <section id="tab-cfg" class="tab-pane">
+        <div class="panel-card">
+          <div class="card-header">
+            <span>📂 NẠP CẤU HÌNH EQUALIZER APO (.TXT / .CFG)</span>
+          </div>
+          <p class="card-sub">Hỗ trợ parse trực tiếp các file Preset Equalizer APO, FabFilter Pro-Q, BufMic, Spatial Haas, Psypan, Wider và BiquadFilter 100%.</p>
+          
+          <div class="file-upload-box">
+            <label for="input-cfg-file" class="btn-hero-action" style="margin-top:0;">
+              📂 CHỌN FILE PRESET .TXT TRÊN IPHONE
+            </label>
+            <input type="file" id="input-cfg-file" accept=".txt,.cfg,.md,.js" style="display:none;">
+            <button id="btn-clear-cfg" class="btn-small-danger" style="margin-top:10px;width:100%;">✕ HỦY CFG & KHÔI PHÙC DSP</button>
+          </div>
+
+          <div id="cfg-active-info" class="cfg-status-box" style="display:none;margin-top:12px;">
+            <div class="card-header">
+              <span id="cfg-file-badge" class="badge-pro">CFG: Chưa nạp</span>
+              <span id="cfg-filter-count" class="badge-tag">0 bands</span>
+            </div>
+            <div id="cfg-bands-container" style="max-height:200px;overflow-y:auto;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 5: SETTINGS & ABOUT -->
+      <section id="tab-settings" class="tab-pane">
+        <div class="panel-card">
+          <div class="card-header">
+            <span>ℹ️ THÔNG TIN PHẦN MỀM & TÁC GIẢ</span>
+          </div>
+          <div class="info-kv-row">
+            <span class="info-k">Ứng dụng</span>
+            <span class="info-v">APO Crusher iOS (v38.0 Universal)</span>
+          </div>
+          <div class="info-kv-row">
+            <span class="info-k">Tác giả / Dev</span>
+            <span class="info-v highlight-v">Nguyen Hoang Gia Bao</span>
+          </div>
+          <div class="info-kv-row">
+            <span class="info-k">Phạm vi hỗ trợ</span>
+            <span class="info-v">Tất cả App có Mic (All-App VoIP / Web / Live)</span>
+          </div>
+          <div class="info-kv-row">
+            <span class="info-k">Nền tảng</span>
+            <span class="info-v">iOS 14.0+ (TrollStore, Sideloadly, ESign, Scarlet, AltStore)</span>
+          </div>
+        </div>
+
+        <div class="panel-card">
+          <div class="card-header">
+            <span>⚙️ CẤU HÌNH ÂM THANH & HIỆU NĂNG</span>
+          </div>
+          <div class="control-row">
+            <span>Chạy Nền Không Gián Đoạn (Background Audio Keep-Alive)</span>
+            <label class="ios-switch">
+              <input type="checkbox" id="toggle-bg-audio" checked>
+              <span class="ios-slider"></span>
+            </label>
+          </div>
+          <div class="control-row" style="margin-top:10px;">
+            <span>Độ trễ thấp nhất (Low-Latency Interactive)</span>
+            <label class="ios-switch">
+              <input type="checkbox" id="toggle-low-latency" checked>
+              <span class="ios-slider"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="hellfire.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
